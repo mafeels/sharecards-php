@@ -22,24 +22,26 @@
                 <div class="col-md-4 col-md-offset-4 login">
                     <div class="login-wrapper">
                         <div class="box">
-                            <div class="forms">
+                            <form method="post" action="dash.php">
+                            <div class="forms" >
                                 <div class="brandImg">
                                     <img src="images/logomin.png" alt="LogoFlashNotes" class="brandImgForm">
                                 </div>
                                 <hr>
-                                <input class="form-control" type="text" placeholder="e-mail" id="email">
+                                <input class="form-control" type="text" placeholder="e-mail" id="email" name="email">
                                 <br>
-                                <input class="form-control" type="password" placeholder="senha" id="senha">
+                                <input class="form-control" type="password" placeholder="senha" id="senha" name="senha">
                                 <br>
                                 <p id="valid" class="message1"></p>
 
-                                <input type="button" value="Entrar" class="inmain" onclick="blankPassword(document.getElementById('email').value, document.getElementById('senha').value)">
+                                <button type="submit" value="Entrar" class="inmain" name="action" ></button>
 
                                 <br>
                                 <div>
                                     <a class="linkable" href="esqueciSenha1.html">Esqueceu a senha?</a>
                                 </div>
                             </div>
+                            </form>
                         </div>
 
                     </div>
@@ -47,4 +49,5 @@
             </div>
         </div>
     </body>
+    <!--onclick="blankPassword(document.getElementById('email').value, document.getElementById('senha').value)-->
 </html>

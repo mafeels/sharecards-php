@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -23,25 +24,41 @@ and open the template in the editor.
             </header>
         </div>
         <!--- #header --->
-        
-        <!--- conteúdo --->
+        <?php
+            //receber os dados do formulario
+            $email= $_POST["email"];
+            $senha = $_POST["senha"];
+            //criar conexão com o banco
+            echo "$email $senha";
+            $servidor = "localhost";
+            $usuario = "root";
+            $senha = "vertrigo";
+            $banco = "flashnotes";
+
+            $conexao = mysqli_connect($servidor,$usuario,$senha,$banco);
+            if (!$conexao) {
+                die ("falha na conexão".mysqli_connection_error());
+            }
+
+            $query = "SELECT * FROM usuario WHERE email='".$email."' AND senha='".$senha."' ";
+
+            $resultado = mysqli_query($conexao,$query);
+        	$num_resultados = mysqli_num_rows($resultado);
+	echo "Numero de resultados encontrador: $num_resultados";
+            if($resultado){
+                echo ' 
         <div class="container" id="wrapper">
-            
-            <!--- Sidebar --->
             <div id="sidebar-wrapper">
             <div class="sidebar-nav">
-                    <img onclick="window.location.href = 'configPerfil.html'" src="images/edi_perfil.PNG" class="img-responsive img-circle" alt="Imagem do usuário" id="img-perfil">
+                    <img onclick="window.location.href = \'configPerfil.html\'" src="images/edi_perfil.PNG" class="img-responsive img-circle" alt="Imagem do usuário" id="img-perfil">
                     <h5>Edilsinho Ferreira</h5>
                     <a class="btn btn-primary" href="configPerfil.html">Configurações da Conta</a>
             </div>
                 
                 
-            </div>
-            <!---#sidebar --->
-            
-            <!-- Page Content -->
-            <!--- Por favor deixar tudo dentro da div abaixo ---->
-            <div id="page-content-wrapper">
+        </div>
+
+        <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <h1>Simple Sidebar</h1>
                     <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
@@ -49,33 +66,27 @@ and open the template in the editor.
                     <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                 </div>
             </div>
-            <!-- /#page-content-wrapper -->
-            
-        </div>
-        <!--- #conteúdo--->
 
-        <!--- Scripts --->
+            
+        </div>';   
+        }
+        ?>
         <script src="js/jquery-3.2.1.js"></script>
-        <!--- Botão de ajuda --->
+
         <script>
             $(document).ready(function () {
                 $("#TutTog").click(function () {
                     $("#TutContent").fadeToggle();
-                });
-            });
         </script>
         <script src="js/flashnotes.js"></script>
-        
-        <!-- Bootstrap core JavaScript -->
+
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Menu Toggle Script -->
         <script>
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        </script>
-
+        </script> 
     </body>
 </html>
