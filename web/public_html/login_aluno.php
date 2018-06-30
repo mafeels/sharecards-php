@@ -5,7 +5,6 @@
 			<meta charset="utf-8">
       </head>
       <body style="line-height: 30px">
-      <h1>Dados Recebidos</h1>
         <?php 
         	$nick=$_POST['nick'];
 			$fnome=$_POST['fname'];
