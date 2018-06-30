@@ -25,23 +25,22 @@
 			
 			$email=$_POST['email'];
 			$senha=$_POST['senha'];
-		
 						
-			$query = "select * from usuario where e_mail=".$email." and senha=".$senha."";
+			$query = "SELECT codigo_usuario, e_mail, senha from usuario";
 
-			$result = $conexao->real_query("select * from usuario where e_mail=".$email." and senha=".$senha."");
+			$result = $conexao->query($query);
 
-			var_dump($result);
-
-			$count = $result->num_rows;
-
-			echo $count;
-
-			if($count>0){
-				header("location: dash.php");
-				return true;
+			if ($result->num_rows > 0) {
+    			while($row = $result->fetch_assoc()) {
+        			if($row["e_mail"] == $email || $row["senha"] == $senha){
+        				header("location: dash.php");
+        				return true;
+        			}
+    			}
 			}
 			return false;
+
+
 	
 			mysqli_close($conexao);
 ?>
