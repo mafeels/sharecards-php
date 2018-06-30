@@ -12,7 +12,7 @@
 
     </head>
     <body>
-        
+
 <div id="throbber" style="display:none; min-height:120px;"></div>
 <div id="noty-holder"></div>
 <div id="wrapper">
@@ -88,7 +88,7 @@
                  <section>
             <br>
             <br>
-            <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'dash.html'">Retornar ao Dashboard</button>
+            <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'dash.php'">Retornar ao Dashboard</button>
 
             <br>
             <br>

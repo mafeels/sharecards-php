@@ -85,7 +85,8 @@
             <!-- Page Heading -->
             <div class="row" id="main" >
                  <p>conteudo</p>
-                 <a href="biblioteca.html">biblioteca aaaaa</a>
+                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'criarFlashcard.php'">Criar Flashcard</button>
+                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'biblioteca.php'">Biblioteca(no php)</button>
             </div>
             <!-- /.row -->
         </div>

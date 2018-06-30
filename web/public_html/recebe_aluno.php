@@ -5,7 +5,6 @@
 			<meta charset="utf-8">
       </head>
       <body style="line-height: 30px">
-      <h1>Dados Recebidos</h1>
         <?php 
         	$nick=$_POST['nick'];
 			$fnome=$_POST['fname'];
@@ -23,10 +22,10 @@
 			
 			$servidor = "localhost";
 			$usuario = "root";
-			$senha = "vertrigo";
+			$senhadb = "vertrigo";
 			$banco = "flashnotes";
 			
-			$conexao = mysqli_connect($servidor,$usuario,$senha,$banco);
+			$conexao = mysqli_connect($servidor,$usuario,$senhadb,$banco);
 			mysqli_set_charset($conexao,"utf8");
 			
 			if (!$conexao) {
@@ -42,7 +41,7 @@
 			$result->bind_param('ssssss', $nick, $birth, $senha, $email, $fnome, $lnome);
 
 			if ($result->execute()){
-				header("location: dash.html");
+				header("location: dash.php");
 				return true;
 			}
 			return false;
