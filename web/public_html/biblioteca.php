@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(empty($_SESSION['codigo_usuario'])){
+        $_SESSION['loginErro'] = "Voce não está logado";
+        header("location: login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

@@ -93,32 +93,34 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row" id="main" >
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'criarFlashcard.php'">Criar Flashcard</button>
+                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'dash.php'">voltar ao dashboard</button>
                  <hr/>
                  <div class="well">
-                    <?php  
-                        include_once("connection_factory.php");
+                    <div class="forms">
+                        <form name="registro" action="gravarFlashcard.php" method="post">
+                            <label for="nome" style="color: black">Nome</label>
+                                <input type="text" id="nome" name="nome" class="inmaind"/>
+                            <label for="frente" style="color: black">Frente</label>
+                                <input type="text" id="frente" name="frente" class="inmaind"/>
+                            <label for="verso" style="color: black">Verso</label>
+                                <input type="text" id="verso" name="verso" class="inmaind"/>
+                            <label for="categoria" style="color: black">Categoria</label>
+                                <input type="text" id="categoria" name="categoria" class="inmaind"/>
 
-                        $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
-                        $result = mysqli_query($conexao,$query);
-                        $num_results = mysqli_num_rows($result);
-                        echo '<p>Número de flashcards: '.$num_results.'</p>';
-                        
-                        for ($i=0; $i <$num_results; $i++)
-                        {
-                             $row = mysqli_fetch_array($result);
+                            <br/>
+                            <p>
+                                    <?php 
+                                    if(isset($_SESSION["criarErro"])){
+                                        echo $_SESSION["criarErro"];
+                                        unset($_SESSION["criarErro"]);
+                                    }
+                                    ?>
+                            </p>
 
-                             echo "<div class='gallery'>";
-                                 echo "<a href='dashFlash.php?id=".$row[0]."'>";
-                                 echo "<img src='images/mona.jpg' alt='flashcard de Artes'>";
-                                 echo "</a>";
-                                 echo "<div class='desc'>Nome: ";
-                                 echo stripslashes($row[2]);
-                                 echo "</div>";
-                             echo "</div>";
-                        }
+                            <input type="submit" value="Criar" class="inmain"/>
 
-                    ?>
+                        </form>
+                    </div>
                  </div>
 
 

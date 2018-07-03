@@ -1,5 +1,11 @@
-<!DOCTYPE html>
+<?php
+    session_start();
 
+    unset($_SESSION['codigo_usuario']);
+?>
+
+
+<!DOCTYPE html>
 <html>
     <head>
         <title>login</title>
@@ -37,9 +43,16 @@
                                 <br>
                                 <p id="valid" class="message1"></p>
 
-                                <input type="submit" value="Entrar" class="inmain" onclick="blankPassword(document.getElementById('email').value, document.getElementById('senha').value)">
+                                <input type="submit" value="Entrar" class="inmain"/>
 
                                 <br>
+                                <p>
+                                    <?php if(isset($_SESSION['loginErro'])){
+                                        echo $_SESSION['loginErro'];
+                                        unset($_SESSION['loginErro']);
+                                    }
+                                    ?>
+                                </p>
                                 <div>
                                     <a class="linkable" href="esqueciSenha1.html">Esqueceu a senha?</a>
                                 </div>

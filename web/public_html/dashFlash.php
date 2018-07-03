@@ -33,7 +33,7 @@
             </a>
         <ul class="nav navbar-right top-nav">          
             <li>
-                 <a href="login.php">Sair</a>
+                <a href="login.php">Sair</a>
             </li>
             <!--- Botão collapse que aparece em telas pequenas -->
             <li>
@@ -93,35 +93,80 @@
         <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row" id="main" >
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'criarFlashcard.php'">Criar Flashcard</button>
-                 <hr/>
-                 <div class="well">
-                    <?php  
-                        include_once("connection_factory.php");
+                <div class="col-sm-12 col-md-12 well" id="content">
+            <button class="btn btn-primary btn-md" type="button" onclick="window.location.href = 'dash.php'">Retornar ao Dashboard</button>
+            <div class="flashcards2">
+                <input type="button" value="Revelar" class="inmainRev btn-success" onclick="document.querySelector('.flip-container').classList.toggle('hover');"/>
+                <div class="flip-container noHover" ontouchstart="this.classList.toggle('hover');">
+                    <div class="flipper">
+                        <div class="front">
+                            <form>
+                                <fieldset>
+                                    <div>
+                                        <legend>Frente</legend>
+                                        <textarea name="Verso" rows="4" cols="20">
+                                        <?php
 
-                        $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
-                        $result = mysqli_query($conexao,$query);
-                        $num_results = mysqli_num_rows($result);
-                        echo '<p>Número de flashcards: '.$num_results.'</p>';
-                        
-                        for ($i=0; $i <$num_results; $i++)
-                        {
-                             $row = mysqli_fetch_array($result);
+                                            include_once("connection_factory.php");
 
-                             echo "<div class='gallery'>";
-                                 echo "<a href='dashFlash.php?id=".$row[0]."'>";
-                                 echo "<img src='images/mona.jpg' alt='flashcard de Artes'>";
-                                 echo "</a>";
-                                 echo "<div class='desc'>Nome: ";
-                                 echo stripslashes($row[2]);
-                                 echo "</div>";
-                             echo "</div>";
-                        }
+                                            $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
 
-                    ?>
-                 </div>
+                                            $result = mysqli_query($conexao,$query);
+                                            $num_results = mysqli_num_rows($result);
 
 
+                                            for ($i=0; $i<$num_results; $i++)
+                                            {
+                                                $row = mysqli_fetch_array($result);
+                                                if($row[0]==$_GET["id"] && $row[1]==$_SESSION["codigo_usuario"]){
+                                                    echo $row[3];
+                                                 }
+                                            }
+                                        ?>
+
+
+
+
+                                        </textarea>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="back">
+                            <form>
+                                <fieldset>
+                                    <div>
+                                        <legend>Verso</legend>
+                                        <textarea name="Verso" rows="4" cols="20">
+                                        <?php
+
+                                            include_once("connection_factory.php");
+
+                                            $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
+                                            $result = mysqli_query($conexao,$query);
+                                            $num_results = mysqli_num_rows($result);
+
+
+                                            for ($i=0; $i<$num_results; $i++)
+                                            {
+                                                $row = mysqli_fetch_array($result);
+                                                if($row[0]==$_SESSION["codigo_flashcard"] && $row[1]==$_SESSION["codigo_usuario"]){
+                                                    echo $row[4];
+                                                 }
+                                            }
+                                        ?>
+
+
+                                        </textarea>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+                </div>
             </div>
             <!-- /.row -->
         </div>
