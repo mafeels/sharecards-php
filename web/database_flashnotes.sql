@@ -5,7 +5,7 @@ show tables;
 create table usuario (
 	codigo_usuario bigint not null auto_increment,
     username varchar(20) not null,
-    data_nascimento date not null,
+    data_nascimento varchar(20) not null,
     senha varchar(12) not null,
     e_mail varchar(50) not null,
 	primeiro_nome varchar(20) not null,
@@ -39,6 +39,7 @@ create table edita (
     constraint fk_codigo_usuario_edita foreign key(codigo_usuario)
     references flashcard (codigo_usuario)) engine=innodb;
 */
+
 select *
 from usuario;
 select *
