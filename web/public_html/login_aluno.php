@@ -4,9 +4,8 @@
             <title>Resultado da Busca</title>
 			<meta charset="utf-8">
       </head>
-      <body style="line-height: 30px">
-      <h1>Resultado da Busca</h1>
-        <?php 
+      <body>
+<?php 
 			
 			//Criar conexão com o banco
 			$servidor = "localhost";
@@ -32,11 +31,13 @@
 
 			if ($result->num_rows > 0) {
     			while($row = $result->fetch_assoc()) {
-        			if($row["e_mail"] == $email || $row["senha"] == $senha){
+        			if($row["e_mail"] == $email && $row["senha"] == $senha){
         				header("location: dash.php");
         				return true;
         			}
     			}
+    			echo "Usuario ou senha não existe";
+    			return false;
 			}
 			return false;
 
