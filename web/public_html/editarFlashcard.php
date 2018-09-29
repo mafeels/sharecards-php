@@ -95,9 +95,7 @@
         <div class="container-fluid well">
             <!-- Page Heading -->
             <div class="row" id="main" >
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'criarFlashcard.php'">Criar Flashcard</button>
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'editarFlashcard.php'">Editar Flashcard</button>
-                 <hr/>
+                 <h3> Escolha um flashcard: </h3>
                  <div>
                     <?php  
                         include_once("connection_factory.php");
@@ -105,15 +103,13 @@
                         $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
                         $result = mysqli_query($conexao,$query);
                         $num_results = mysqli_num_rows($result);
-                        if($num_results>0) echo '<p>Você tem '.$num_results.' flashcards, parabens!</p>';
-                        else echo '<p>Você não tem flashcards, crie um agora!</p>';
                         
                         for ($i=0; $i <$num_results; $i++)
                         {
                              $row = mysqli_fetch_array($result);
 
                              echo "<div class='gallery'>";
-                                 echo "<a href='dashFlash.php?id=".$row[0]."'>";
+                                 echo "<a href='editFlash.php?id=".$row[0]."'>";
                                  echo "<img src='images/mona.jpg' alt='flashcard de Artes'>";
                                  echo "</a>";
                                  echo "<div class='desc'>Nome: ";

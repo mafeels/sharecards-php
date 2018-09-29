@@ -2,10 +2,8 @@
     session_start();
 
     if(empty($_SESSION['codigo_usuario'])){
-
         $_SESSION['loginErro'] = "Voce não está logado";
         header("location: login.php");
-
     }
 ?>
 
@@ -92,37 +90,58 @@
     </nav>
 
     <div id="page-wrapper">
-        <div class="container-fluid well">
+        <div class="container-fluid">
             <!-- Page Heading -->
             <div class="row" id="main" >
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'criarFlashcard.php'">Criar Flashcard</button>
-                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'editarFlashcard.php'">Editar Flashcard</button>
+                 <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href = 'dash.php'">voltar ao dashboard</button>
                  <hr/>
-                 <div>
-                    <?php  
-                        include_once("connection_factory.php");
+                 <div class="well">
+                    <div class="forms">
+                        <?php
+                        $id = $_GET["id"];
+                        echo " <form name='registro' action='updateFlashcard.php?id=".$id."'  method='post'> ";
+                        ?>
 
-                        $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
-                        $result = mysqli_query($conexao,$query);
-                        $num_results = mysqli_num_rows($result);
-                        if($num_results>0) echo '<p>Você tem '.$num_results.' flashcards, parabens!</p>';
-                        else echo '<p>Você não tem flashcards, crie um agora!</p>';
-                        
-                        for ($i=0; $i <$num_results; $i++)
-                        {
-                             $row = mysqli_fetch_array($result);
+                            <label for="nome" style="color: black">Nome</label>
+                                <?php
+                                    include_once("consultaFlashcard.php");
+                                    echo " <input type='text' id='nome' name='nome' class='inmaind' value= ' ".$flashcard[2]." '/> ";
+                                ?>
+                            <label for="frente" style="color: black">Frente</label>
+                                <?php
+                                    include_once("consultaFlashcard.php");
+                                    echo " <input type='text' id='frente' name='frente' class='inmaind' value= ' ".$flashcard[3]." '/> ";
+                                ?>
+                            <label for="verso" style="color: black">Verso</label>
+                                <?php
+                                    include_once("consultaFlashcard.php");
+                                    echo " <input type='text' id='verso' name='verso' class='inmaind' value= ' ".$flashcard[4]." '/> ";
+                                ?>
+                            <label for="categoria" style="color: black">Categoria</label>
+                            
+                                <?php
+                                    include_once("consultaFlashcard.php");
+                                    echo " <input type='text' id='categoria' name='categoria' class='inmaind' value= ' ".$flashcard[6]." '/> ";
+                                ?>
 
-                             echo "<div class='gallery'>";
-                                 echo "<a href='dashFlash.php?id=".$row[0]."'>";
-                                 echo "<img src='images/mona.jpg' alt='flashcard de Artes'>";
-                                 echo "</a>";
-                                 echo "<div class='desc'>Nome: ";
-                                 echo stripslashes($row[2]);
-                                 echo "</div>";
-                             echo "</div>";
-                        }
+                            <br/>
+                            <p>
+                                    <?php 
+                                    /*
+                                    if(isset($_SESSION["criarErro"])){
 
-                    ?>
+                                        echo $_SESSION["criarErro"];
+                                        unset($_SESSION["criarErro"]);
+
+                                    }
+                                    */
+                                    ?>
+                            </p>
+
+                            <input type="submit" value="Editar" class="inmain"/>
+
+                        </form>
+                    </div>
                  </div>
 
 
@@ -130,15 +149,11 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-        
     </div>
     <!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
-
-
                                                                   
 <!-- Scripts -->  
-    <p style="text-align: center;"> ShareCards 2018. All rights reserved. Made by William and Matheus.</p>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="estudar.js"></script>

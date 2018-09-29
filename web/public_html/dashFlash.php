@@ -106,22 +106,10 @@
                                         <legend>Frente</legend>
                                         <textarea name="Verso" rows="4" cols="20">
                                         <?php
+                                            include_once("consultaFlashcard.php");
 
-                                            include_once("connection_factory.php");
+                                            echo $flashcard[3];
 
-                                            $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
-
-                                            $result = mysqli_query($conexao,$query);
-                                            $num_results = mysqli_num_rows($result);
-
-
-                                            for ($i=0; $i<$num_results; $i++)
-                                            {
-                                                $row = mysqli_fetch_array($result);
-                                                if($row[0]==$_GET["id"] && $row[1]==$_SESSION["codigo_usuario"]){
-                                                    echo $row[3];
-                                                 }
-                                            }
                                         ?>
 
 
@@ -140,21 +128,7 @@
                                         <textarea name="Verso" rows="4" cols="20">
                                         <?php
 
-                                            include_once("connection_factory.php");
-
-                                            $query = "SELECT * from flashcard WHERE codigo_usuario='".$_SESSION["codigo_usuario"]."' ";
-
-                                            $result = mysqli_query($conexao,$query);
-                                            $num_results = mysqli_num_rows($result);
-
-
-                                            for ($i=0; $i<$num_results; $i++)
-                                            {
-                                                $row = mysqli_fetch_array($result);
-                                                if($row[0]==$_GET["id"] && $row[1]==$_SESSION["codigo_usuario"]){
-                                                    echo $row[4];
-                                                 }
-                                            }
+                                            echo $flashcard[4];
                                         ?>
 
 
